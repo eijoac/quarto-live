@@ -6,7 +6,7 @@ import { basicSetup } from 'codemirror';
 import { tagHighlighterTok } from './highlighter';
 import { EditorView, ViewUpdate, keymap } from '@codemirror/view';
 import { EditorState, Compartment, Prec, Extension } from '@codemirror/state';
-import { syntaxHighlighting } from "@codemirror/language";
+import { indentUnit, syntaxHighlighting } from "@codemirror/language";
 import { autocompletion, CompletionContext } from '@codemirror/autocomplete';
 import { python } from "@codemirror/lang-python";
 import { r } from "codemirror-lang-r";
@@ -120,6 +120,7 @@ abstract class ExerciseEditor {
       basicSetup,
       this.languageExtensions(),
       EditorView.updateListener.of((update) => this.onViewUpdate(update)),
+      indentUnit.of("    "),
     ];
 
     // Load previous edits to editor from browser storage
